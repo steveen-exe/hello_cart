@@ -1,7 +1,8 @@
 {% load static %}
-{% load chunks%}
+{% load chunks %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Products | RedStore</title>
@@ -14,21 +15,25 @@
             margin: 0;
             padding: 0;
         }
+
         .container {
             padding: 40px 10%;
         }
+
         .title {
             text-align: center;
             margin: 30px 0;
             font-size: 28px;
             font-weight: bold;
         }
+
         .row {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             gap: 20px;
         }
+
         .col-4 {
             flex: 1 1 22%;
             background: #fff;
@@ -38,31 +43,38 @@
             text-align: center;
             transition: transform 0.2s ease;
         }
+
         .col-4 img {
             width: 100%;
             max-height: 200px;
             object-fit: contain;
         }
+
         .col-4 h4 {
             margin: 10px 0;
             font-size: 16px;
         }
+
         .rating i {
             color: orange;
             font-size: 14px;
         }
+
         .col-4:hover {
             transform: scale(1.05);
         }
+
         p {
             font-weight: bold;
             margin-top: 5px;
         }
+
         @media (max-width: 992px) {
             .col-4 {
                 flex: 1 1 45%;
             }
         }
+
         @media (max-width: 576px) {
             .col-4 {
                 flex: 1 1 100%;
@@ -72,28 +84,39 @@
 </head>
 
 <body>
-<div class="container">
-    <h2 class="title">All products</h2>
-    {% for row in products|chunks:4 %}
-    <div class="row">
-        {% for product in row %}
-        <div class="col-4">
-            <a href="{% url 'detail_product'%}">
-                <img src="{{ product.image.url }}" alt="{{ product.title }}">
-                <h4>{{ product.title }}</h4>
-            </a>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <i class="fa fa-star-o"></i>
+    <div class="container">
+        <h2 class="title">All products</h2>
+
+        {% for row in products|chunks:4 %}
+        <div class="row">
+            {% for product in row %}
+            <div class="col-4">
+                <a href="{% url 'detail_product' product.id %}">
+                    <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                    <h4>{{ product.title }}</h4>
+                </a>
+                <p>${{ product.price }}</p>
             </div>
-            <p>${{ product.price }}</p>
+            {% endfor %}
         </div>
         {% endfor %}
+
+        <div class="page-btn">
+            {% if products.has_previous %}
+            <a href="?page={{ products.previous_page_number }}"><span>&laquo;</span></a>
+            {% endif %}
+
+            {% for i in products.paginator.page_range %}
+            <a href="?page={{ i }}" class="{% if products.number == i %}active{% endif %}">
+                <span>{{ i }}</span>
+            </a>
+            {% endfor %}
+
+            {% if products.has_next %}
+            <a href="?page={{ products.next_page_number }}"><span>&raquo;</span></a>
+            {% endif %}
+        </div>
     </div>
-    {% endfor %}
-</div>
 </body>
+
 </html>

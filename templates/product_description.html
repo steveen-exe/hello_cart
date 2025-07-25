@@ -3,29 +3,14 @@
     <div class="row">
         <!-- Image Section -->
         <div class="col-2">
-            <img src="{% static 'images/gallery-1.jpg' %}" width="100%" id="product-img">
-
-            <div class="small-img-row">
-                <div class="small-img-col">
-                    <img src="{% static 'images/gallery-1.jpg' %}" width="100%" class="small-img">
-                </div>
-                <div class="small-img-col">
-                    <img src="{% static 'images/gallery-2.jpg' %}" width="100%" class="small-img">
-                </div>
-                <div class="small-img-col">
-                    <img src="{% static 'images/gallery-3.jpg' %}" width="100%" class="small-img">
-                </div>
-                <div class="small-img-col">
-                    <img src="{% static 'images/gallery-4.jpg' %}" width="100%" class="small-img">
-                </div>
-            </div>
+            <img src="{{ product.image.url }}" width="100%" id="product-img">
         </div>
 
         <!-- Product Text Section -->
         <div class="col-2">
-            <p>Home / T-Shirt</p>
-            <h1>Red Printed T-Shirt by HRX</h1>
-            <h4>$50.00</h4>
+            <p>a practice test designed to familiarize individuals with the format, structure, and question types of an actual exam</p>
+            <h1>{{product.title}}</h1>
+            <h4>${{product.price}}</h4>
 
             <!-- Size Dropdown -->
             <select>
@@ -47,9 +32,8 @@
             <h3>Product Details <i class="fa fa-indent" aria-hidden="true"></i></h3>
             <br>
             <p>
-                Give your summer wardrobe a style upgrade with the HRX Men's Active T-shirt.
-                Team it with a pair of shorts for your morning workout or a pair of jeans
-                for an evening out with the guys.
+                A test case is a specific set of conditions or variables under which a tester determines whether a system, software application, 
+                or one of its features is working as intended.
             </p>
         </div>
     </div>
