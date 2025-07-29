@@ -49,23 +49,12 @@ Open in browser:
 
     http://127.0.0.1:8000/
 
-📁 Project Structure
 
-hello_cart/
-├── customers/
-├── orders/
-├── products/
-├── hello_cart/
-├── templates/
-├── static/
-├── db.sqlite3
-├── manage.py
-├── README.md
-└── requirements.txt
 
 ✅ License
 
 This project is for educational/demo purposes.
+
 
 
 🧑‍🎓 Author
