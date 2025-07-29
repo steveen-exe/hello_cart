@@ -3,38 +3,42 @@
     <div class="row">
         <!-- Image Section -->
         <div class="col-2">
-            <img src="{{ product.image.url }}" width="100%" id="product-img">
+            <img src="{{ product.image.url }}" width="100%" id="product-img" alt="{{ product.title }}">
         </div>
 
         <!-- Product Text Section -->
         <div class="col-2">
-            <p>a practice test designed to familiarize individuals with the format, structure, and question types of an actual exam</p>
-            <h1>{{product.title}}</h1>
-            <h4>${{product.price}}</h4>
+            <p>A premium product for your needs</p>
+            <h1>{{ product.title }}</h1>
+            <h4>${{ product.price }}</h4>
 
-            <!-- Size Dropdown -->
-            <select>
-                <option>Select Size</option>
-                <option>XXL</option>
-                <option>XL</option>
-                <option>Large</option>
-                <option>Medium</option>
-                <option>Small</option>
-            </select>
+            <!-- Add to Cart Form -->
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+                {% csrf_token %}
 
-            <!-- Quantity Input -->
-            <input type="number" value="1">
+                <!-- Size Dropdown (optional) -->
+                <label for="size">Select Size:</label>
+                <select name="size" id="size">
+                    <option value="">Select Size</option>
+                    <option value="XXL">XXL</option>
+                    <option value="XL">XL</option>
+                    <option value="Large">Large</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Small">Small</option>
+                </select>
 
-            <!-- Add to Cart Button -->
-            <a href="#" class="btn">Add To Cart</a>
+                <!-- Quantity Input -->
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" style="margin-bottom: 15px;">
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn">Add To Cart</button>
+            </form>
 
             <!-- Product Description -->
             <h3>Product Details <i class="fa fa-indent" aria-hidden="true"></i></h3>
             <br>
-            <p>
-                A test case is a specific set of conditions or variables under which a tester determines whether a system, software application, 
-                or one of its features is working as intended.
-            </p>
+            <p>{{ product.description }}</p>
         </div>
     </div>
 </div>
