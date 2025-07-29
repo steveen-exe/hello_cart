@@ -18,8 +18,8 @@ This is a simple e-commerce cart system built with Django. It allows users to:
 - Python 3.13
 - Django 5.2.4
 - SQLite (default DB)
-- Bootstrap (optional for UI)
-- Pillow (for image upload, if used)
+- Bootstrap
+- Pillow 
 
 ## ⚙️ Setup Instructions
 
